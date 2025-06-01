@@ -9,19 +9,20 @@ ft_write:
     ;   buffer  - a pointer in memory to (allegedly) relevant data
     ;   n       - the number of chars from buffer that should be written to fd.
 
-    mov rax, 1  ; syscall number 1 ( = sys_write)
+    mov rax, 1          ; syscall number 1 ( = sys_write)
     syscall
 
-    cmp rax, 0
-    jl handle_error      ; jump to handle_error if rax < 0
+    cmp rax, 0          ; any errors on syscall return a negative error number in rax
+    jl .handle_error    ; jump to .handle_error if rax < 0
 
     ret
 
-handle_error:
-    neg rax
+.handle_error:
+    neg rax                 ; turns negative error number into positive
+    mov rdi, rax            ; stores number in rdi so it doesn't get overwritten
 
-    call __errno_location
-    mov [rax], rax
+    call __errno_location   ; returns the pointer to errno in rax
+    mov [rax], rdi          ; dereference errno pointer and stores syscall error code there
 
-    mov rax, -1
+    mov rax, -1             ; the write function originally returns -1!!!!!!!
     ret
