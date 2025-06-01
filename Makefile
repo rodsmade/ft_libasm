@@ -5,7 +5,7 @@ OBJS = $(SRCS:.s=.o)
 
 TEST_DIR = test
 TEST_SRC = $(TEST_DIR)/main.c
-TEST_BIN = test_bin
+TEST_BIN = test_bin.out
 
 all: $(NAME)
 
