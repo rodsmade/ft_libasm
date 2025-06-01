@@ -1,6 +1,6 @@
 NAME = libasm.a
 
-SRCS = hello.s
+SRCS = hello.s ft_write.s
 OBJS = $(SRCS:.s=.o)
 
 TEST_DIR = test

@@ -3,5 +3,6 @@
 #define LIBASM_H
 
 void ft_hello(void);
+void ft_write(int fd, char *buffer, int n);
 
 #endif
