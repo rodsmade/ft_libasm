@@ -12,5 +12,5 @@ ft_hello:
     ret                     ; return to caller (C code)
 
 section .data
-msg:        db "Hello world in Assembly!", 10
+msg:        db "Hello world in Assembly!", 10   ; 10 is the \n character
 msg_len:    equ $ - msg
