@@ -9,12 +9,12 @@ ft_strlen:
 
     xor rax, rax        ; set rax to 0, this is better than using mov
 
-.loop
+.loop:
     cmp byte [rdi], 0   ; check if current char is '\0'
     je .done
     add rax, 1          ; could've been inc but oh well. rax++
     inc rdi             ; pointer arithmetic to move rdi to next char
     jmp .loop
 
-.done
+.done:
     ret
