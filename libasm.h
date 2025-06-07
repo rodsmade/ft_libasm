@@ -5,6 +5,7 @@
 # include <unistd.h>
 
 void    ft_hello(void);
+int     ft_strcmp(const char *s1, const char *s2);
 size_t  ft_strlen(const void *string);
 ssize_t ft_write(int fd, const void *buffer, size_t n);
 
