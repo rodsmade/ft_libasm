@@ -3,8 +3,9 @@ global ft_strlen
 
 section .text
 ft_strlen:
-    ; rdi = pointer to a string
-    ; rax = counter (size_t)
+    ; counts how many pointer hops until a `\0` is found in memory.
+    ;   rdi = receives pointer to an address (void *)
+    ;   rax = returns counter (size_t)
 
     xor rax, rax        ; set rax to 0, this is better than using mov
 
