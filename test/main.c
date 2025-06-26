@@ -1,36 +1,21 @@
-#include "../libasm.h"
 #include <stdio.h>
-#include <string.h>
+#include "../libasm.h"
 
-void test_ft_strcmp(const char *a, const char *b) {
-    int std = strcmp(a, b);
-    int custom = ft_strcmp(a, b);
-    printf("Comparing \"%s\" vs \"%s\"\n", a, b);
-    printf("  strcmp:    %d\n", std);
-    printf("  ft_strcmp: %d\n", custom);
-    printf("  ✅ %s\n\n", (std == custom) ? "PASS" : "FAIL ❌");
-}
+// Declare test group runners
+void run_strcmp_tests(void);
+void run_strcpy_tests(void);
+void run_strlen_tests(void);
+void run_write_tests(void);
 
 int main(void) {
+    puts("🚀 Starting tests for libasm...\n");
+
     ft_hello();
 
-    char buffer[26] = "First attempt at writing";
-    buffer[24] = '\n';
-    buffer[25] = '\0';
-
-    ft_write(2, buffer, 25);
-    printf("Size of string: %lu bytes.\n", ft_strlen(buffer));
-
-    test_ft_strcmp("hello", "hello");
-    test_ft_strcmp("hello", "hell");
-    test_ft_strcmp("hell", "hello");
-    test_ft_strcmp("hello", "helloo");
-    test_ft_strcmp("a", "b");
-    test_ft_strcmp("b", "a");
-    test_ft_strcmp("", "");
-    test_ft_strcmp("a", "");
-    test_ft_strcmp("", "a");
-    test_ft_strcmp("hello", "Hello");  // ASCII diff
+    run_strcmp_tests();
+    run_strcpy_tests();
+    run_strlen_tests();
+    run_write_tests();
 
     return 0;
 }
