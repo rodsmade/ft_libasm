@@ -13,7 +13,7 @@ ft_strcpy:
 
     mov rax, rdi        ; saves original address of dest
 
-.loop
+.loop:
     mov al, [rsi]       ; can't move from memory to memory directly;
     mov [rdi], al       ; 'mov' needs one of the operands to be a register (al).
     cmp al, 0
@@ -22,5 +22,5 @@ ft_strcpy:
     inc rdi
     jmp .loop
 
-.done
+.done:
     ret
