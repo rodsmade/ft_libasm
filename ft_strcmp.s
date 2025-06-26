@@ -13,7 +13,7 @@ ft_strcmp:
     ;   - <0 if s1 is lexicographically less than s2
     ;   - >0 if s1 is lexicographically greater than s2
 
-    xor rax, rax
+    xor rax, rax                    ; reset rax (all bits to 0)
 
 .loop:
     mov al, [rdi]                   ; load the lowest 8 bits (byte) of rdi to al
