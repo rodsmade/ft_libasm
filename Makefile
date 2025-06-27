@@ -4,43 +4,30 @@ SRC_DIR = src
 OBJ_DIR = obj
 TEST_DIR = test
 
-SRCS = \
-	$(SRC_DIR)/hello.s \
-	$(SRC_DIR)/ft_read.s \
-	$(SRC_DIR)/ft_strcmp.s \
-	$(SRC_DIR)/ft_strcpy.s \
-	$(SRC_DIR)/ft_strdup.s \
-	$(SRC_DIR)/ft_strlen.s \
-	$(SRC_DIR)/ft_write.s
+ASM_NAMES = \
+	hello \
+	ft_read \
+	ft_strcmp \
+	ft_strcpy \
+	ft_strdup \
+	ft_strlen \
+	ft_write
 
-OBJS = \
-	$(OBJ_DIR)/hello.o \
-	$(OBJ_DIR)/ft_read.o \
-	$(OBJ_DIR)/ft_strcmp.o \
-	$(OBJ_DIR)/ft_strcpy.o \
-	$(OBJ_DIR)/ft_strdup.o \
-	$(OBJ_DIR)/ft_strlen.o \
-	$(OBJ_DIR)/ft_write.o
+SRCS = $(addprefix $(SRC_DIR)/, $(addsuffix .s, $(ASM_NAMES)))
+OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(ASM_NAMES)))
 
-TEST_SRCS = \
-	$(TEST_DIR)/main.c \
-	$(TEST_DIR)/test_read.c \
-	$(TEST_DIR)/test_strcmp.c \
-	$(TEST_DIR)/test_strcpy.c \
-	$(TEST_DIR)/test_strdup.c \
-	$(TEST_DIR)/test_strlen.c \
-	$(TEST_DIR)/test_write.c \
-	$(TEST_DIR)/test_helpers.c
+TEST_NAMES = \
+	main \
+	test_read \
+	test_strcmp \
+	test_strcpy \
+	test_strdup \
+	test_strlen \
+	test_write \
+	test_helpers
 
-TEST_OBJS = \
-	$(TEST_DIR)/main.o \
-	$(TEST_DIR)/test_read.o \
-	$(TEST_DIR)/test_strcmp.o \
-	$(TEST_DIR)/test_strcpy.o \
-	$(TEST_DIR)/test_strdup.o \
-	$(TEST_DIR)/test_strlen.o \
-	$(TEST_DIR)/test_write.o \
-	$(TEST_DIR)/test_helpers.o
+TEST_SRCS = $(addprefix $(TEST_DIR)/, $(addsuffix .c, $(TEST_NAMES)))
+TEST_OBJS = $(addprefix $(TEST_DIR)/, $(addsuffix .o, $(TEST_NAMES)))
 
 TEST_BIN = test_bin.out
 
