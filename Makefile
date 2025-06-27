@@ -9,6 +9,7 @@ SRCS = \
 	$(SRC_DIR)/ft_read.s \
 	$(SRC_DIR)/ft_strcmp.s \
 	$(SRC_DIR)/ft_strcpy.s \
+	$(SRC_DIR)/ft_strdup.s \
 	$(SRC_DIR)/ft_strlen.s \
 	$(SRC_DIR)/ft_write.s
 
@@ -17,6 +18,7 @@ OBJS = \
 	$(OBJ_DIR)/ft_read.o \
 	$(OBJ_DIR)/ft_strcmp.o \
 	$(OBJ_DIR)/ft_strcpy.o \
+	$(OBJ_DIR)/ft_strdup.o \
 	$(OBJ_DIR)/ft_strlen.o \
 	$(OBJ_DIR)/ft_write.o
 
@@ -25,6 +27,7 @@ TEST_SRCS = \
 	$(TEST_DIR)/test_read.c \
 	$(TEST_DIR)/test_strcmp.c \
 	$(TEST_DIR)/test_strcpy.c \
+	$(TEST_DIR)/test_strdup.c \
 	$(TEST_DIR)/test_strlen.c \
 	$(TEST_DIR)/test_write.c \
 	$(TEST_DIR)/test_helpers.c
@@ -34,6 +37,7 @@ TEST_OBJS = \
 	$(TEST_DIR)/test_read.o \
 	$(TEST_DIR)/test_strcmp.o \
 	$(TEST_DIR)/test_strcpy.o \
+	$(TEST_DIR)/test_strdup.o \
 	$(TEST_DIR)/test_strlen.o \
 	$(TEST_DIR)/test_write.o \
 	$(TEST_DIR)/test_helpers.o
