@@ -2,15 +2,27 @@
 global ft_strcpy
 
 section .text
-ft_strcpy:
-    ; Copies the null-terminated string from src (rsi) to dest (rdi),
-    ; up to and including the first null terminator ('\0') found in src.
-    ;
-    ; The copy proceeds byte by byte until the null terminator is encountered.
-    ;
-    ; Returns:
-    ;   - a pointer to dest (rdi), stored in rax.
 
+; ─────────────────────────────────────────────────────────────
+; ft_strcpy - copies a null-terminated string from `src` to `dest`.
+;
+; Parameters:
+;   rdi - pointer to destination buffer (char *)
+;   rsi - pointer to source string (const char *)
+;
+; Returns:
+;   rax - pointer to destination buffer (`dest`)
+;
+; Behavior:
+;   - Copies bytes one by one from `src` to `dest`
+;   - Includes the null terminator (`'\0'`) in the copy
+;
+; Notes:
+;   - The caller is responsible for ensuring `dest` has enough space
+;   - No bounds checking is performed
+; ─────────────────────────────────────────────────────────────
+
+ft_strcpy:
     mov rax, rdi        ; saves original address of dest
 
 .loop:

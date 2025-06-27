@@ -3,6 +3,7 @@ global ft_read              ; exports ft_read to the linker
 extern __errno_location     ; imports function to get the pointer to errno
 
 section .text
+
 ; ─────────────────────────────────────────────────────────────
 ; ft_read - reads up to `n` bytes from a file descriptor into a buffer.
 ;
@@ -24,6 +25,7 @@ section .text
 ;   - Buffer must be writable memory of at least `n` bytes
 ;   - The syscall may return fewer bytes than requested
 ; ─────────────────────────────────────────────────────────────
+
 ft_read:
     mov rax, 0          ; syscall number 0 ( = sys_read)
     syscall             ; the thing is, sys_read will look at what's in

@@ -2,11 +2,26 @@
 global ft_strlen
 
 section .text
-ft_strlen:
-    ; counts how many pointer hops until a `\0` is found in memory.
-    ;   rdi = receives pointer to an address (void *)
-    ;   rax = returns counter (size_t)
 
+; ─────────────────────────────────────────────────────────────
+; ft_strlen - computes the length of a null-terminated string.
+;
+; Parameters:
+;   rdi - pointer to the start of the string (const char *)
+;
+; Returns:
+;   rax - number of bytes before the first null terminator (size_t)
+;
+; Behavior:
+;   - Increments a counter until a byte equal to 0 ('\0') is found
+;   - Does not include the null terminator in the count
+;
+; Notes:
+;   - The input string must be properly null-terminated
+;   - No bounds checking is performed (undefined behavior if not)
+; ─────────────────────────────────────────────────────────────
+
+ft_strlen:
     xor rax, rax        ; set rax to 0, this is better than using mov
 
 .loop:
