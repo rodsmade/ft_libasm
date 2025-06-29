@@ -23,7 +23,7 @@ section .text
 ; ─────────────────────────────────────────────────────────────
 
 ft_strcpy:
-    mov rax, rdi        ; saves original address of dest
+    mov rbx, rdi        ; saves original address of dest
 
 .loop:
     mov al, [rsi]       ; can't move from memory to memory directly;
@@ -35,4 +35,5 @@ ft_strcpy:
     jmp .loop
 
 .done:
+    mov rax, rbx
     ret
