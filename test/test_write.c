@@ -5,13 +5,6 @@
 
 #include "../libasm.h"
 
-void assert_equal_ssize_t(const char *label, ssize_t expected, ssize_t actual) {
-    printf("%s\n", label);
-    printf("  expected: %zd\n", expected);
-    printf("  actual:   %zd\n", actual);
-    printf("  ✅ %s\n\n", (expected == actual) ? "PASS" : "FAIL ❌");
-}
-
 void test_ft_write(const char *desc, int fd, const char *buf, size_t n) {
     errno = 0;
     ssize_t expected = write(fd, buf, n);
@@ -21,15 +14,17 @@ void test_ft_write(const char *desc, int fd, const char *buf, size_t n) {
     ssize_t actual = ft_write(fd, buf, n);
     int actual_errno = errno;
 
-    printf("Test: %s\n", desc);
-    assert_equal_ssize_t("  Return value", expected, actual);
-    printf("  expected errno: %d\n", expected_errno);
-    printf("  actual errno:   %d\n", actual_errno);
-    printf("  ✅ %s\n\n", (expected == actual && expected_errno == actual_errno) ? "PASS" : "FAIL ❌");
+    int pass_val = expected == actual;
+    int pass_errno = expected_errno == actual_errno;
+    printf("%s Case : %s |", (pass_val && pass_errno) ? "PASS ✅" : "FAIL ❌", desc);
+    printf(" expected value: %zd;", expected);
+    printf(" actual value: %zd;", actual);
+    printf(" expected errno: %d;", expected_errno);
+    printf(" actual errno: %d\n", actual_errno);
 }
 
 void run_write_tests(void) {
-    puts("✍️  Running ft_write tests...\n");
+    puts("\n✍️  Running ft_write tests...\n");
 
     test_ft_write("Write to stdout", 1, "Hello from ft_write!\n", 21);
     test_ft_write("Write to stderr", 2, "Error message\n", 14);

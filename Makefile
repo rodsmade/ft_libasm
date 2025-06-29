@@ -22,8 +22,7 @@ TEST_NAMES = \
 	test_strcpy \
 	test_strdup \
 	test_strlen \
-	test_write \
-	test_helpers
+	test_write
 
 TEST_SRCS = $(addprefix $(TEST_DIR)/, $(addsuffix .c, $(TEST_NAMES)))
 TEST_OBJS = $(addprefix $(TEST_DIR)/, $(addsuffix .o, $(TEST_NAMES)))

@@ -24,7 +24,7 @@ void test_ft_strcpy(const char *label, const char *src) {
 }
 
 void run_strcpy_tests(void) {
-    puts("📋 Running ft_strcpy tests...\n");
+    puts("\n📋 Running ft_strcpy tests...\n");
 
     test_ft_strcpy("Empty string", "");
     test_ft_strcpy("Single character", "a");

@@ -2,7 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 
-void assert_equal_int(const char *label, int expected, int actual);  // From test_helpers
+void assert_equal_int(const char *label, int expected, int actual) {
+
+    printf("%s Case: %s |", (expected == actual) ? "PASS ✅" : "FAIL ❌", label);
+    printf(" expected: %d;", expected);
+    printf(" actual: %d\n", actual);
+}
 
 void test_ft_strcmp(const char *a, const char *b) {
     char desc[256];
@@ -13,7 +18,7 @@ void test_ft_strcmp(const char *a, const char *b) {
 }
 
 void run_strcmp_tests(void) {
-    puts("🔍 Running ft_strcmp tests...\n");
+    puts("\n🔍 Running ft_strcmp tests...\n");
 
     test_ft_strcmp("hello", "hello");
     test_ft_strcmp("hello", "hell");

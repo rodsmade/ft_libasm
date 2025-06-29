@@ -7,18 +7,12 @@
 #include <stdlib.h>
 
 void assert_read_result(const char *desc, ssize_t expected, ssize_t actual, const char *expected_buf, const char *actual_buf, size_t size) {
-    printf("%s\n", desc);
-    printf("  Return value: expected %zd, got %zd\n", expected, actual);
-
     int pass = (expected == actual) && (memcmp(expected_buf, actual_buf, size) == 0);
-    printf("  Buffer match: %s\n", pass ? "✅ YES" : "❌ NO");
-
-    printf("  ✅ %s\n\n", pass ? "PASS" : "FAIL ❌");
+    printf("%s Case: %s | ", pass ? "PASS ✅" : "FAIL ❌", desc);
+    printf("expected %zd; got %zd\n", expected, actual);
 }
 
 void test_read_from_file(void) {
-    puts("..Testing ft_read from file...\n");
-
     char file[] = "test_read_tmp.txt";
     const char *content = "Assembly is fun!\n";
     int len = strlen(content);
@@ -52,7 +46,7 @@ void test_read_from_file(void) {
 }
 
 void test_read_stdin_prompt(void) {
-    puts("..Test ft_read from stdin — type something and press enter:");
+    puts("TEST 🪶  Case: ft_read from stdin — type something and press enter:");
 
     char buf[128] = {0};
     ssize_t r = ft_read(0, buf, 127);
@@ -62,28 +56,25 @@ void test_read_stdin_prompt(void) {
 }
 
 void test_invalid_fd(void) {
-    puts("..Testing ft_read with invalid fd...\n");
-
+    
     char buffer[16] = {0};
     errno = 0;
-
+    
     ssize_t result = ft_read(-42, buffer, 10);
     int saved_errno = errno;
-
-    printf("Return: %zd\n", result);
+    int pass = result == -1 && saved_errno != 0;
+    printf("%s Case: ft_read with invalid fd | ", pass ? "PASS ✅" : "FAIL ❌");
+    printf("Return: %zd;", result);
     printf("errno: %d (%s)\n", saved_errno, strerror(saved_errno));
-    printf("  ✅ %s\n\n", (result == -1 && saved_errno != 0) ? "PASS" : "FAIL ❌");
 }
 
 void test_read_zero_bytes(void) {
-    puts("..Testing ft_read with 0-byte request...\n");
-
     char buffer[16] = "unchanged";
     ssize_t result = ft_read(0, buffer, 0);
-
-    printf("Return: %zd\n", result);
+    int pass = result == 0;
+    printf("%s Case: ft_read with 0-byte request | ", pass ? "PASS ✅" : "FAIL ❌");
+    printf("Return: %zd; ", result);
     printf("Buffer: \"%s\"\n", buffer);
-    printf("  ✅ %s\n\n", (result == 0) ? "PASS" : "FAIL ❌");
 }
 
 void run_read_tests(void) {

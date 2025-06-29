@@ -3,10 +3,9 @@
 #include "../libasm.h"
 
 void assert_equal_size_t(const char *label, size_t expected, size_t actual) {
-    printf("%s\n", label);
-    printf("  expected: %lu\n", expected);
-    printf("  actual:   %lu\n", actual);
-    printf("  ✅ %s\n\n", (expected == actual) ? "PASS" : "FAIL ❌");
+    printf("%s Case: %s;", (expected == actual) ? "PASS ✅" : "FAIL ❌", label);
+    printf(" expected: %lu |", expected);
+    printf(" actual: %lu\n", actual);
 }
 
 void test_ft_strlen(const char *input) {
@@ -20,7 +19,7 @@ void test_ft_strlen(const char *input) {
 }
 
 void run_strlen_tests(void) {
-    puts("📏 Running ft_strlen tests...\n");
+    puts("\n📏 Running ft_strlen tests...\n");
 
     test_ft_strlen("");                            // Empty string
     test_ft_strlen("a");                           // Single character
