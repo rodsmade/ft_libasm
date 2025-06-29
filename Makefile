@@ -48,7 +48,7 @@ $(TEST_DIR)/%.o: $(TEST_DIR)/%.c
 	$(CC) $(CFLAGS) $< -c -o $@
 
 # Link test binary
-$(TEST_BIN): $(NAME) $(TEST_OBJS)
+$(TEST_BIN): $(NAME) $(TEST_OBJS) $(TEST_DIR)/main.c
 	$(CC) $(CFLAGS) $(TEST_DIR)/main.c $(TEST_OBJS) -L. -lasm -o $@
 
 test: $(TEST_BIN)
