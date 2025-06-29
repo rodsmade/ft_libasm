@@ -3,47 +3,42 @@
 #include "../libasm.h"
 
 void assert_equal_str(const char *label, const char *expected, const char *actual) {
-    printf("%s\n", label);
-    printf("  expected: \"%s\"\n", expected);
-    printf("  actual:   \"%s\"\n", actual);
-    printf("  ✅ %s\n\n", (strcmp(expected, actual) == 0) ? "PASS" : "FAIL ❌");
+    printf("%s Case: %s;", (strcmp(expected, actual) == 0) ? "PASS ✅" : "FAIL ❌", label);
+    printf(" expected: \"%s\" |", expected);
+    printf(" actual: \"%s\"\n", actual);
 }
 
-void assert_same_pointer(const char *label, const void *expected, const void *actual) {
-    printf("%s\n", label);
-    printf("  expected ptr: %p\n", expected);
-    printf("  actual ptr:   %p\n", actual);
-    printf("  ✅ %s\n\n", (expected == actual) ? "PASS" : "FAIL ❌");
+void assert_same_pointer(const void *expected, const void *actual) {
+    printf("%s Returned pointer check;", (expected == actual) ? "PASS ✅" : "FAIL ❌");
+    printf(" expected ptr: %p |", expected);
+    printf(" actual ptr: %p\n", actual);
 }
 
-void test_ft_strcpy(const char *src) {
-    char buffer[1024] = {0}; // big enough to hold anything we throw at it
+void test_ft_strcpy(const char *label, const char *src) {
+    char dest[1024] = {0}; // big enough to hold anything we throw at it
 
-    char *ret = ft_strcpy(buffer, src);
+    char *ret = ft_strcpy(dest, src);
 
-    char desc[256];
-    snprintf(desc, sizeof(desc), "ft_strcpy(\"%s\")", src);
-
-    assert_equal_str(desc, src, buffer);
-    assert_same_pointer("Returned pointer check", buffer, ret);
+    assert_equal_str(label, src, dest);
+    assert_same_pointer(dest, ret);
 }
 
 void run_strcpy_tests(void) {
     puts("📋 Running ft_strcpy tests...\n");
 
-    test_ft_strcpy("");                        // empty string
-    test_ft_strcpy("a");                       // single character
-    test_ft_strcpy("hello");                   // normal string
-    test_ft_strcpy("copy with spaces");        // spaces
-    test_ft_strcpy("newlines\nincluded");      // newline inside
-    test_ft_strcpy("tabs\tand more");          // tabs
-    test_ft_strcpy("symbols!@#$%^&*()");       // symbols
-    test_ft_strcpy("null\0hidden");            // hidden tail: only copies until null
-    test_ft_strcpy("UTF8: 🚀💥🧠✨");        // multibyte UTF-8
+    test_ft_strcpy("Empty string", "");
+    test_ft_strcpy("Single character", "a");
+    test_ft_strcpy("Normal string", "hello");
+    test_ft_strcpy("Spaces", "copy with spaces");
+    test_ft_strcpy("Newline inside", "newlines\nincluded");
+    test_ft_strcpy("Tabs", "tabs\tand more");
+    test_ft_strcpy("Symbols", "symbols!@#$%^&*()");
+    test_ft_strcpy("Hidden tail: only copies until null", "null\0hidden");
+    test_ft_strcpy("Multibyte UTF-8", "UTF8: 🚀💥🧠✨");
 
     // Long string
     char long_src[512];
     memset(long_src, 'x', 511);
     long_src[511] = '\0';
-    test_ft_strcpy(long_src);
+    test_ft_strcpy("Long string", long_src);
 }

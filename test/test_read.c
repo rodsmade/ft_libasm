@@ -17,7 +17,7 @@ void assert_read_result(const char *desc, ssize_t expected, ssize_t actual, cons
 }
 
 void test_read_from_file(void) {
-    puts("📂 Testing ft_read from file...\n");
+    puts("..Testing ft_read from file...\n");
 
     char file[] = "test_read_tmp.txt";
     const char *content = "Assembly is fun!\n";
@@ -52,17 +52,17 @@ void test_read_from_file(void) {
 }
 
 void test_read_stdin_prompt(void) {
-    puts("⌨️  Test ft_read from stdin — type something and press enter:\n");
+    puts("..Test ft_read from stdin — type something and press enter:");
 
     char buf[128] = {0};
     ssize_t r = ft_read(0, buf, 127);
     buf[r > 0 ? r : 0] = '\0';
 
-    printf("🧪 Read from stdin (%zd bytes): \"%s\"\n\n", r, buf);
+    printf(">> Read from stdin (%zd bytes): \"%s\"\n\n", r, buf);
 }
 
 void test_invalid_fd(void) {
-    puts("🚫 Testing ft_read with invalid fd...\n");
+    puts("..Testing ft_read with invalid fd...\n");
 
     char buffer[16] = {0};
     errno = 0;
@@ -76,7 +76,7 @@ void test_invalid_fd(void) {
 }
 
 void test_read_zero_bytes(void) {
-    puts("🧪 Testing ft_read with 0-byte request...\n");
+    puts("..Testing ft_read with 0-byte request...\n");
 
     char buffer[16] = "unchanged";
     ssize_t result = ft_read(0, buffer, 0);
@@ -87,7 +87,7 @@ void test_read_zero_bytes(void) {
 }
 
 void run_read_tests(void) {
-    puts("🔍 Running ft_read tests...\n");
+    puts("\n🔍 Running ft_read tests...\n");
 
     test_read_from_file();
     test_read_zero_bytes();
