@@ -17,7 +17,6 @@ SRCS = $(addprefix $(SRC_DIR)/, $(addsuffix .s, $(ASM_NAMES)))
 OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(ASM_NAMES)))
 
 TEST_NAMES = \
-	main \
 	test_read \
 	test_strcmp \
 	test_strcpy \
@@ -46,11 +45,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.s
 
 # Compile C test sources normally
 $(TEST_DIR)/%.o: $(TEST_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $< -c -o $@
 
 # Link test binary
 $(TEST_BIN): $(NAME) $(TEST_OBJS)
-	$(CC) $(CFLAGS) -pie $(TEST_OBJS) -L. -lasm -o $@
+	$(CC) $(CFLAGS) $(TEST_DIR)/main.c $(TEST_OBJS) -L. -lasm -o $@
 
 test: $(TEST_BIN)
 	./$(TEST_BIN)
