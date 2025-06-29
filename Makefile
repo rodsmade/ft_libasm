@@ -17,6 +17,7 @@ SRCS = $(addprefix $(SRC_DIR)/, $(addsuffix .s, $(ASM_NAMES)))
 OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(ASM_NAMES)))
 
 TEST_NAMES = \
+	test_helpers \
 	test_read \
 	test_strcmp \
 	test_strcpy \

@@ -1,9 +1,5 @@
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <errno.h>
+# include "tests.h"
 
-#include "../libasm.h"
 
 void test_ft_write(const char *desc, int fd, const char *buf, size_t n) {
     errno = 0;
@@ -24,7 +20,7 @@ void test_ft_write(const char *desc, int fd, const char *buf, size_t n) {
 }
 
 void run_write_tests(void) {
-    puts("\n✍️  Running ft_write tests...\n");
+    highlight_log("ft_write");
 
     test_ft_write("Write to stdout", 1, "Hello from ft_write!\n", 21);
     test_ft_write("Write to stderr", 2, "Error message\n", 14);

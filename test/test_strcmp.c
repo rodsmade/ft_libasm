@@ -1,6 +1,4 @@
-#include "../libasm.h"
-#include <stdio.h>
-#include <string.h>
+# include "tests.h"
 
 void assert_equal_int(const char *label, int expected, int actual) {
 
@@ -18,7 +16,7 @@ void test_ft_strcmp(const char *a, const char *b) {
 }
 
 void run_strcmp_tests(void) {
-    puts("\n🔍 Running ft_strcmp tests...\n");
+    highlight_log("ft_strcmp");
 
     test_ft_strcmp("hello", "hello");
     test_ft_strcmp("hello", "hell");

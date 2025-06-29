@@ -1,6 +1,8 @@
+#include "../libasm.h"
+# include "tests.h"
+
 #include <stdio.h>
 #include <string.h>
-#include "../libasm.h"
 
 void assert_equal_size_t(const char *label, size_t expected, size_t actual) {
     printf("%s Case: %s;", (expected == actual) ? "PASS ✅" : "FAIL ❌", label);
@@ -19,7 +21,7 @@ void test_ft_strlen(const char *input) {
 }
 
 void run_strlen_tests(void) {
-    puts("\n📏 Running ft_strlen tests...\n");
+    highlight_log("ft_strlen");
 
     test_ft_strlen("");                            // Empty string
     test_ft_strlen("a");                           // Single character

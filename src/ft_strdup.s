@@ -25,17 +25,18 @@ section .text
 ; ──────────────────────────────────────────────────────────────────────────────
 
 ft_strdup:
-    mov rcx, rdi            ; saves address of original str temporarily in rcx
+    mov rbx, rdi            ; saves address of original str temporarily in rbx
     call ft_strlen          ; first get length of rdi
     add rax, 1              ; add 1 to account for \0
 
-    ; prepare registers for mmap call
-    mov rdi, 0
+    ; Prepare mmap call
+    ; void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)
+    xor rdi, rdi            ; addr = NULL
     mov rsi, rax            ; length + 1 is stored in rax
-    mov rdx, 0x3
-    mov r10, 0x22
-    mov r8, -1
-    mov r9, 0
+    mov rdx, 0x3            ; prot = PROT_READ | PROT_WRITE
+    mov r10, 0x22           ; flags = MAP_PRIVATE | MAP_ANONYMOUS
+    mov r8, -1              ; fd = -1
+    xor r9, r9              ; offset = 0
     mov rax, 9              ; 9 is sys_mmap
     syscall                 ; make mmap call; new ptr is in rax
     cmp rax, 0              ; check for errors (copy write errno)
@@ -43,7 +44,7 @@ ft_strdup:
 
     ; prepare registers for ft_strcpy
     mov rdi, rax            ; rax holds the new ptr
-    mov rsi, rcx            ; og str address was kept in rcx
+    mov rsi, rbx            ; og str address was kept in rbx
     call ft_strcpy          ; returns destination buffer in rax
 
     ; return the pointer to new str
@@ -56,5 +57,5 @@ ft_strdup:
     call __errno_location   ; returns the pointer to errno in rax
     mov [rax], rdi          ; dereference errno pointer and stores syscall error code there
 
-    mov rax, 0              ; must return NULL and set errno
+    xor rax, rax            ; return NULL
     ret

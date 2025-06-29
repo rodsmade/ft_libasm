@@ -1,10 +1,4 @@
-#include "../libasm.h"
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include "tests.h"
 
 void assert_read_result(const char *desc, ssize_t expected, ssize_t actual, const char *expected_buf, const char *actual_buf, size_t size) {
     int pass = (expected == actual) && (memcmp(expected_buf, actual_buf, size) == 0);
@@ -78,7 +72,7 @@ void test_read_zero_bytes(void) {
 }
 
 void run_read_tests(void) {
-    puts("\n🔍 Running ft_read tests...\n");
+    highlight_log("ft_read");
 
     test_read_from_file();
     test_read_zero_bytes();

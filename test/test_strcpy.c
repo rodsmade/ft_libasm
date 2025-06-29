@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include "../libasm.h"
+# include "tests.h"
 
 void assert_equal_str(const char *label, const char *expected, const char *actual) {
     printf("%s Case: %s;", (strcmp(expected, actual) == 0) ? "PASS ✅" : "FAIL ❌", label);
@@ -24,7 +22,7 @@ void test_ft_strcpy(const char *label, const char *src) {
 }
 
 void run_strcpy_tests(void) {
-    puts("\n📋 Running ft_strcpy tests...\n");
+    highlight_log("ft_strcpy");
 
     test_ft_strcpy("Empty string", "");
     test_ft_strcpy("Single character", "a");

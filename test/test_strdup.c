@@ -1,7 +1,4 @@
-#include "../libasm.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+# include "tests.h"
 
 // ─────────────────────────────────────────────────────────────
 // Helper
@@ -11,21 +8,19 @@ void assert_strdup(const char *input) {
     char *expected = strdup(input);
     char *actual = ft_strdup(input);
 
-    printf("ft_strdup(\"%s\"):\n", input);
     if (!expected || !actual) {
         printf("  strdup:    %p\n", (void *)expected);
         printf("  ft_strdup: %p\n", (void *)actual);
-        printf("  ❌ One of the results is NULL.\n\n");
+        printf("  ❌ One of the results is NULL.\n");
     } else if (strcmp(expected, actual) != 0) {
         printf("  strdup:    \"%s\"\n", expected);
         printf("  ft_strdup: \"%s\"\n", actual);
-        printf("  ❌ Strings differ.\n\n");
+        printf("  ❌ Strings differ.\n");
     } else {
-        printf("  ✅ PASS\n\n");
+        printf("PASS ✅ Case: ft_strdup(\"%s\")\n", input);
     }
 
     free(expected);
-    free(actual); // memory returned by mmap can be freed if munmap'd, but here we skip it
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -33,7 +28,7 @@ void assert_strdup(const char *input) {
 // ─────────────────────────────────────────────────────────────
 
 void run_strdup_tests(void) {
-    puts("🧬 Running ft_strdup tests...\n");
+    highlight_log("ft_strdup");
 
     assert_strdup("");
     assert_strdup("42");
